@@ -1,9 +1,11 @@
+
 /* Header */
 .header {
     background: #000;
-    border-bottom: 1px solid #ddd;
     padding: 10px 0;
     color: #fff;
+    position: relative;
+    z-index: 999;
 }
 .header .inner-logo img {
     max-height: 50px;
@@ -44,6 +46,13 @@
     margin-bottom: 0;
     font-size: 28px;
     font-weight: 600;
-    color: green;
+    color: #fff;
 }
 /* End box-head */
+
+.main-content {
+    background: #202020;
+    margin-top: -16px;
+    margin-bottom: -16px;
+    padding: 20px 0;
+}
