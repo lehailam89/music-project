@@ -15,7 +15,7 @@ if (aplayer) {
         cover: dataSong.avatar,
       }
     ],
-    autoplay: true,
+    autoplay: false,
     volume: 0.7,
   })
   const avatar = document.querySelector(".singer-detail .inner-avatar");
@@ -45,11 +45,39 @@ if(buttonLike){
     fetch(link, option)
       .then(res => res.json())
       .then(data => {
-        const span = buttonLike.querySelector("span");
-        span.innerHTML = `${data.like} thích`;
+        if(data.code == 200){
+          const span = buttonLike.querySelector("span");
+          span.innerHTML = `${data.like} thích`;
 
-        buttonLike.classList.toggle("active");
+          buttonLike.classList.toggle("active");
+        }
       })
   });
 }
 // End Button Like
+
+
+// Button Favorite
+const buttonFavorite = document.querySelector("[button-favorite]");
+if(buttonFavorite){
+  buttonFavorite.addEventListener("click", () => {
+    const idSong = buttonFavorite.getAttribute("button-favorite");
+    const isActive = buttonFavorite.classList.contains("active");
+    
+    const typeFavorite = isActive ? "unfavorite" : "favorite";
+
+    const option = {
+      method: "PATCH"
+    }
+
+    const link = `/songs/favorite/${typeFavorite}/${idSong}`;
+    fetch(link, option)
+      .then(res => res.json())
+      .then(data => {
+        if(data.code == 200){
+          buttonFavorite.classList.toggle("active");
+        }
+      })
+  });
+}
+// End Button Favorite
