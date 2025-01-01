@@ -398,3 +398,50 @@ body {
     color: #fff !important;
 }
 /* End Box-head */
+
+/* Box search */
+.box-search{
+    border: 2px solid transparent;
+    padding: 3px;
+    border-radius: 30px;     
+    background: #202020;   
+    transition: border 0.3s ease;
+}
+.box-search:hover{
+    background-color: #2A2A2A;
+}
+.box-search:hover .form-group button{
+    color: #fff;
+}
+.box-search:hover .form-group .form-control{
+    color: #fff;
+}
+.box-search .form-group button{
+    background: none;
+    border: none;
+    color: #656565;
+    font-size: 20px;
+}
+.box-search .form-group .form-control{
+    background: none;
+    border: none;
+    color: #656565;
+}
+.box-search .form-group .form-control:focus {
+    outline: none;
+    box-shadow: none; /* Thêm thuộc tính này */
+    border: none; /* Thêm thuộc tính này */
+}
+.box-search .form-group .form-control::placeholder {
+    color: #656565;
+}
+.box-search:focus-within {
+    border: 2px solid #fff; /* Thay đổi viền khi input bên trong nhận được focus */
+}
+.box-search:focus-within .form-group button {
+    color: #fff; /* Thay đổi màu của nút khi input bên trong nhận được focus */
+}
+.box-search:focus-within .form-group .form-control{
+    color: #fff;
+}
+/* End Box search */
