@@ -141,3 +141,35 @@ export const favorite = async (req: Request, res: Response) => {
         message: "Thành công!"
     })
 }
+
+// [PATCH] /songs/listen/:idSong
+export const listen = async (req: Request, res: Response) => {  
+    const idSong: String = req.params.idSong;
+
+    const song = await Song.findOne({
+        _id: idSong
+    });
+
+    const listen: number = (song?.listen ?? 0) + 1;
+
+    await Song.updateOne({
+        _id: idSong
+    },{
+        listen: listen
+    });
+
+    const songNew = await Song.findOne({
+        _id: idSong
+    });
+
+    if (!songNew) {
+        res.status(404).send('Song not found');
+        return;
+    }
+
+    res.json({
+        code: 200,
+        message: "Thành công!",
+        listen: songNew.listen
+      });
+    }
