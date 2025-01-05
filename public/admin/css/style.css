@@ -106,6 +106,7 @@
 
 .sider .inner-menu ul li a.active,
 .sider .inner-menu ul li a:hover {
-    background: blue;
+    text-decoration: none;
+    background: #3ADF74;
 }
 /* End Sider */

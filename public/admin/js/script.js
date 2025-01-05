@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   siderLinks.forEach(link => {
     // Kiểm tra URL hiện tại và thêm lớp active vào thẻ a tương ứng
-    if (link.href === window.location.href) {
+    if (window.location.href.includes(link.getAttribute('href'))) {
       link.classList.add("active");
     }
 
