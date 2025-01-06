@@ -54,7 +54,33 @@ export const createPost = async (req: Request, res: Response) => {
         status: req.body.status,
         avatar: avatar,
         audio: audio,
+        lyrics: req.body.lyrics,
       };
     const song = await Song.create(dataSong);
     res.redirect(`/${systemConfig.prefixAdmin}/songs`);
 }
+
+//[GET] /admin/songs/edit/:id
+export const edit = async (req: Request, res: Response) => {
+    const id = req.params.id;
+
+    const song = await Song.findOne({
+        _id: id,
+        deleted: false
+    });
+
+    const topics = await Topic.find({
+        deleted: false
+    }).select("title");
+
+    const singers = await Singer.find({
+        deleted: false
+    }).select("fullName");
+
+    res.render("admin/pages/songs/edit", {
+        pageTitle: "Chỉnh sửa bài hát",
+        song: song,
+        topics: topics,
+        singers: singers
+    });
+};
