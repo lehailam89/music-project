@@ -39,7 +39,7 @@
     color: #fff;
     display: block;
     padding: 6px 10px;
-    border-bottom: 1px solid #515151;
+    /* border-bottom: 1px solid #515151; */
   }
   /* End Sider */
   /* Show Alert */
@@ -100,7 +100,7 @@
     color: #fff;
     display: block;
     padding: 6px 10px;
-    border-bottom: 1px solid #515151;
+    /* border-bottom: 1px solid #515151; */
     transition: background 0.3s ease;
 }
 
