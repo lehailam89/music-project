@@ -1,7 +1,7 @@
 tinymce.init({
-    selector: 'textarea.textarea-mce',
+    selector: '[textarea-mce]',
     plugins: "image",
-    height: 800,
+    height: 500,
     file_picker_callback: function (cb, value, meta) {
       var input = document.createElement('input');
       input.setAttribute('type', 'file');
