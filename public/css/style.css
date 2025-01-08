@@ -524,3 +524,174 @@ body {
 }
 
 /* End Box search */
+
+
+/* Show Alert Client */
+[show-alert] {
+    position: fixed;
+    top: 70px;
+    right: 15px;
+    z-index: 9999;
+}
+
+[show-alert].alert-hidden{
+    animation-name: alert-hidden;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes alert-hidden {
+  from{
+    right: 15px;
+  }
+  to{
+    right: -100%;
+    display: none;
+  }
+}
+
+[show-alert] [close-alert] {
+    background: #ffffffc4;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    line-height: 24px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 50%;
+    cursor: pointer;
+}
+/* End Show Alert Client*/
+
+/* Register Page */
+.register-container {
+    background: #2c3e50;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.register-container h1 {
+    color: #ecf0f1;
+    margin-bottom: 20px;
+}
+
+.register-container .form-group label {
+    color: #ecf0f1;
+}
+
+.register-container .form-control {
+    background: #34495e;
+    border: 1px solid #34495e;
+    color: #ecf0f1;
+}
+
+.register-container .form-control:focus {
+    background: #34495e;
+    border-color: #1abc9c;
+    color: #ecf0f1;
+}
+
+.register-container .btn-primary {
+    background: #1abc9c;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.register-container .btn-primary:hover {
+    background: #16a085;
+}
+/* End Register Page */
+
+/* Login Page */
+.login-container {
+    background: #2c3e50;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+    color: #ecf0f1;
+    margin-bottom: 20px;
+}
+
+.login-container .form-group label {
+    color: #ecf0f1;
+}
+
+.login-container .form-control {
+    background: #34495e;
+    border: 1px solid #34495e;
+    color: #ecf0f1;
+}
+
+.login-container .form-control:focus {
+    background: #34495e;
+    border-color: #1abc9c;
+    color: #ecf0f1;
+}
+
+.login-container .btn-primary {
+    background: #1abc9c;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.login-container .btn-primary:hover {
+    background: #16a085;
+}
+
+.login-container a {
+    color: #1abc9c;
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.login-container a:hover {
+    color: #16a085;
+    text-decoration: none;
+}
+/* End Login Page */
+
+/* Forgot Password Page */
+.forgot-password-container {
+    background: #2c3e50;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.forgot-password-container h1 {
+    color: #ecf0f1;
+    margin-bottom: 20px;
+}
+
+.forgot-password-container .form-group label {
+    color: #ecf0f1;
+}
+
+.forgot-password-container .form-control {
+    background: #34495e;
+    border: 1px solid #34495e;
+    color: #ecf0f1;
+}
+
+.forgot-password-container .form-control:focus {
+    background: #34495e;
+    border-color: #1abc9c;
+    color: #ecf0f1;
+}
+
+.forgot-password-container .btn-primary {
+    background: #1abc9c;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.forgot-password-container .btn-primary:hover {
+    background: #16a085;
+}
+/* End Forgot Password Page */
