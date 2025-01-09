@@ -16,6 +16,6 @@ block main
               div(class="inner-title")
                 a(href=`/songs/detail/${item.infoSong.slug}`) #{item.infoSong.title}
               div(class="inner-singer") <i class="fa-solid fa-microphone-lines"></i> #{item.infoSinger.fullName}
-              div(class="inner-heart active" button-favorite=item.songId)
+              div(class=("inner-heart " + (item.infoSong.isFavoriteSong ? "active" : "")) button-favorite=item._id)
                 <i class="fa-regular fa-heart"></i> Yêu thích
               div(class="inner-time") <i class="fa-regular fa-clock"></i> 20/10/2024

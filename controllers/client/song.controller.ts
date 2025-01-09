@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
+import mongoose from 'mongoose';
 import Topic from '../../models/topic.model';
 import Song from '../../models/songs.model';
 import Singer from '../../models/singer.model';
 import FavoriteSong from '../../models/favorite-song.model';
+import User from '../../models/user.model'; // Import model User
 
 //[GET] /songs/:slugTopic
 export const list = async (req: Request, res: Response): Promise<void> => {
@@ -63,11 +65,14 @@ export const detail = async (req: Request, res: Response): Promise<void>  => {
       deleted: false
     }).select("title");
 
-    const favoriteSong = await FavoriteSong.findOne({
-        songId: song.id
-    });
+    const userId = req.cookies.tokenUser;
+    const user = await User.findOne({ tokenUser: userId });
 
-    (song as any).isFavoriteSong = favoriteSong ? true : false;
+    if (user && user.favoriteMusic.includes(song._id)) {
+        (song as any).isFavoriteSong = true;
+    } else {
+        (song as any).isFavoriteSong = false;
+    }
 
     res.render("client/pages/songs/detail", {
       pageTitle: "Chi tiết bài hát",
@@ -112,35 +117,48 @@ export const like = async (req: Request, res: Response) => {
 export const favorite = async (req: Request, res: Response) => {
     const idSong: string = req.params.idSong;
     const typeFavorite: string = req.params.typeFavorite;
+    const userId = req.cookies.tokenUser;
+
+    const user = await User.findOne({ tokenUser: userId });
+
+    if (!user) {
+        res.status(401).send('User not found');
+        return;
+    }
+
+    const song = await Song.findOne({ _id: idSong });
+
+    if (!song) {
+        res.status(404).send('Song not found');
+        return;
+    }
+
+    const songObjectId = new mongoose.Types.ObjectId(idSong);
+    const userObjectId = new mongoose.Types.ObjectId(user._id);
 
     switch (typeFavorite) {
         case "favorite":
-            const existFavorite = await FavoriteSong.findOne({
-                songId: idSong,
-            });
-            if(!existFavorite){
-                const record = new FavoriteSong({
-                    // userId: "",
-                    songId: idSong
-                });
-                await record.save();
+            if (!user.favoriteMusic.includes(songObjectId)) {
+                user.favoriteMusic.push(songObjectId);
+                song.likedBy.push(userObjectId);
             }
             break;
         case "unfavorite":
-            await FavoriteSong.findOneAndDelete({
-                songId: idSong
-            });
+            user.favoriteMusic = user.favoriteMusic.filter((songId) => songId.toString() !== idSong);
+            song.likedBy = song.likedBy.filter((userId) => userId.toString() !== user._id.toString());
             break;
-            default:
+        default:
             break;
-        }
+    }
 
+    await user.save();
+    await song.save();
 
     res.json({
         code: 200,
         message: "Thành công!"
-    })
-}
+    });
+};
 
 // [PATCH] /songs/listen/:idSong
 export const listen = async (req: Request, res: Response) => {  
@@ -154,7 +172,7 @@ export const listen = async (req: Request, res: Response) => {
 
     await Song.updateOne({
         _id: idSong
-    },{
+    }, {
         listen: listen
     });
 
@@ -171,5 +189,5 @@ export const listen = async (req: Request, res: Response) => {
         code: 200,
         message: "Thành công!",
         listen: songNew.listen
-      });
-    }
+    });
+}

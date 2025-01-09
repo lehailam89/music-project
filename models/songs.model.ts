@@ -23,6 +23,10 @@ const singerSchema = new mongoose.Schema(
             slug: "title", 
             unique: true 
         },
+        likedBy: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }],
         deleted: {
             type: Boolean,
             default: false

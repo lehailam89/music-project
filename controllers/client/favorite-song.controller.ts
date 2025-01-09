@@ -1,31 +1,39 @@
 import { Request, Response } from "express";
-import FavoriteSong from "../../models/favorite-song.model";
 import Song from "../../models/songs.model";
 import Singer from "../../models/singer.model";
+import User from "../../models/user.model";
 
 // GET /favorite-songs
 export const index = async (req: Request, res: Response): Promise<void> => {
-  const favoriteSongs = await FavoriteSong.find({
-    // userId: "",
-    deleted: false
-  }).lean();
+  const userId = req.cookies.tokenUser;
+
+  const user = await User.findOne({ tokenUser: userId }).populate('favoriteMusic');
+
+  if (!user) {
+    res.status(401).send('User not found');
+    return;
+  }
+
+  const favoriteSongs = user.favoriteMusic;
 
   for (const item of favoriteSongs) {
-    const infoSong = await Song.findOne({
-      _id: item.songId,
+    const song = await Song.findOne({
+      _id: item._id,
       deleted: false
     }).lean();
 
-    if (infoSong) {
-      (item as any).infoSong = infoSong;
-      const infoSinger = await Singer.findOne({
-        _id: infoSong.singerId,
-        deleted: false
-      }).lean();
+    if (song) {
+      (item as any).infoSong = song;
+      (item as any).infoSong.isFavoriteSong = true; // Gán giá trị isFavoriteSong
+    }
 
-      if (infoSinger) {
-        (item as any).infoSinger = infoSinger;
-      }
+    const infoSinger = await Singer.findOne({
+      _id: song?.singerId,
+      deleted: false
+    }).lean();
+
+    if (infoSinger) {
+      (item as any).infoSinger = infoSinger;
     }
   }
 

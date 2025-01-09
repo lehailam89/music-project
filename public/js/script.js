@@ -70,7 +70,6 @@ if(buttonLike){
 }
 // End Button Like
 
-
 // button favorite
 const listButtonFavorite = document.querySelectorAll('[button-favorite]');
 if (listButtonFavorite && listButtonFavorite.length > 0) {

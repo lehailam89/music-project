@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: "active"
         },
+        favoriteMusic: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Song"
+        }],
         deleted: {
             type: Boolean,
             default: false
