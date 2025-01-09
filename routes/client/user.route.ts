@@ -12,4 +12,9 @@ router.get("/logout", userController.logout);
 router.get("/password/forgot", userController.forgotPassword);
 router.post("/password/forgot", validate.forgotPasswordPost, userController.forgotPasswordPost);
 router.get("/password/otp", userController.otpPassword);
+router.post("/password/otp", userController.otpPasswordPost);
+router.get("/password/reset", userController.resetPassword);
+router.post("/password/reset", validate.resetPasswordPost ,userController.resetPasswordPost);
+router.get("/info", authMiddleware.requireAuth ,userController.info);
+
 export const userRoutes: Router = router;

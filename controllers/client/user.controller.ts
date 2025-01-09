@@ -132,3 +132,64 @@ export const otpPassword = async (req: Request, res: Response) => {
         email: email
     });
 }
+
+//[POST] /user/password/otp
+export const otpPasswordPost = async (req: Request, res: Response): Promise<void> => {
+    const email = req.body.email;
+    const otp = req.body.otp;
+
+    const result = await ForgotPassword.findOne({
+        email: email,
+        otp: otp
+    });
+
+    if (!result) {
+        req.flash("error", "OTP không hợp lệ!");
+        res.redirect("back");
+        return; 
+    }
+
+    const user = await User.findOne({
+        email: email
+    });
+
+    if (!user) { // Kiểm tra nếu user không tồn tại
+        req.flash("error", "Người dùng không tồn tại!");
+        res.redirect("back");
+        return;
+    }
+
+    res.cookie("tokenUser", user.tokenUser);
+
+    res.redirect("/user/password/reset");
+};
+
+//[GET] /user/password/reset
+export const resetPassword = async (req: Request, res: Response) => {
+    res.render("client/pages/user/reset-password", {
+        pageTitle: "Đổi mật khẩu"
+    });
+}
+
+//[POST] /user/password/reset
+export const resetPasswordPost = async (req: Request, res: Response): Promise<void> => {
+    const password = req.body.password;
+    const tokenUser = req.cookies.tokenUser;
+
+    await User.updateOne({
+        tokenUser: tokenUser,
+    }, {
+        password: md5(password)
+    });
+
+    req.flash("success", "Đổi mật khẩu thành công!");
+
+    res.redirect("/topics");
+};
+
+//[GET] /user/info
+export const info = async (req: Request, res: Response) => {
+    res.render("client/pages/user/info", {
+        title: "Thông tin tài khoản"
+    });
+}

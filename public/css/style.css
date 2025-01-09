@@ -695,3 +695,89 @@ body {
     background: #16a085;
 }
 /* End Forgot Password Page */
+
+/* Reset Password Page */
+.reset-password-container {
+    background: #2c3e50;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reset-password-container h1 {
+    color: #ecf0f1;
+    margin-bottom: 20px;
+}
+
+.reset-password-container .form-group label {
+    color: #ecf0f1;
+}
+
+.reset-password-container .form-control {
+    background: #34495e;
+    border: 1px solid #34495e;
+    color: #ecf0f1;
+}
+
+.reset-password-container .form-control:focus {
+    background: #34495e;
+    border-color: #1abc9c;
+    color: #ecf0f1;
+}
+
+.reset-password-container .btn-primary {
+    background: #1abc9c;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.reset-password-container .btn-primary:hover {
+    background: #16a085;
+}
+/* End Reset Password Page */
+
+/* OTP Password Page */
+.otp-password-container {
+    background: #2c3e50;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.otp-password-container h1 {
+    color: #ecf0f1;
+    margin-bottom: 20px;
+}
+
+.otp-password-container .form-group label {
+    color: #ecf0f1;
+}
+
+.otp-password-container .form-control {
+    background: #34495e;
+    border: 1px solid #34495e;
+    color: #ecf0f1;
+}
+
+.otp-password-container .form-control:focus {
+    background: #34495e;
+    border-color: #1abc9c;
+    color: #ecf0f1;
+}
+
+.otp-password-container .btn-primary {
+    background: #1abc9c;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.otp-password-container .btn-primary:hover {
+    background: #16a085;
+}
+/* End OTP Password Page */
+
+/* Info User */
+.info-user{
+    color: #fff;
+}
+/* End Info User */
