@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Account from "../../models/account.model";
 import Role from "../../models/role.model";
 import { systemConfig } from "../../config/config";
-import md5 from "md5";
+import md5 from 'md5';
 
 //[GET] /admin/accounts/
 export const index = async (req: Request, res: Response) => {
@@ -24,6 +24,7 @@ export const index = async (req: Request, res: Response) => {
     res.render("admin/pages/accounts/index", {
         pageTitle: "Danh sách tài khoản",
         records: accountsWithRoles,
+        prefixAdmin: systemConfig.prefixAdmin,
     });
 }
 
@@ -36,16 +37,21 @@ export const create = async (req: Request, res: Response) => {
     res.render("admin/pages/accounts/create", {
         pageTitle: "Tạo mới tài khoản",
         roles: roles,
+        prefixAdmin: systemConfig.prefixAdmin,
     });
 };
 
 //[POST] /admin/accounts/create
 export const createPost = async (req: Request, res: Response) => {
-    const data = req.body;
-    data.password = md5(data.password);
-    const record = new Account(data);
-
-    await record.save();
-
+    const dataAccount = {
+        fullName: req.body.fullName,
+        email: req.body.email,
+        password: md5(req.body.password),
+        phone: req.body.phone,
+        avatar: req.body.avatar,
+        role_id: req.body.role_id,
+        status: req.body.status,
+    };
+    const account = await Account.create(dataAccount);
     res.redirect(`/${systemConfig.prefixAdmin}/accounts`);
-}
+};

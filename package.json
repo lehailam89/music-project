@@ -36,7 +36,7 @@
     "@types/md5": "^2.3.5",
     "@types/method-override": "^3.0.0",
     "@types/multer": "^1.4.12",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.5",
     "@types/nodemailer": "^6.4.17",
     "@types/streamifier": "^0.1.2",
     "@types/unidecode": "^0.1.3",
