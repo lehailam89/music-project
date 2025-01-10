@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Account from "../../models/account.model";
 import Role from "../../models/role.model";
 import { systemConfig } from "../../config/config";
+import md5 from "md5";
 
 //[GET] /admin/accounts/
 export const index = async (req: Request, res: Response) => {
@@ -37,3 +38,14 @@ export const create = async (req: Request, res: Response) => {
         roles: roles,
     });
 };
+
+//[POST] /admin/accounts/create
+export const createPost = async (req: Request, res: Response) => {
+    const data = req.body;
+    data.password = md5(data.password);
+    const record = new Account(data);
+
+    await record.save();
+
+    res.redirect(`/${systemConfig.prefixAdmin}/accounts`);
+}
