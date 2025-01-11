@@ -18,11 +18,26 @@ export const list = async (req: Request, res: Response): Promise<void> => {
         return;
     }
     
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = 6; // Số bài hát trên mỗi trang
+    const skip = (page - 1) * limit;
+
+    const totalSongs = await Song.countDocuments({
+        topicId: topic._id,
+        status: "active",
+        deleted: false
+    });
+    
+    const totalPages = Math.ceil(totalSongs / limit);
+
     const songs = await Song.find({
         topicId: topic._id,
         status: "active",
         deleted: false
-    }).select("avatar title slug singerId like").lean();
+    })
+    .select("avatar title slug singerId like").skip(skip)
+    .limit(limit)
+    .lean();
 
     for(const song of songs){
         const infoSinger = await Singer.findOne({
@@ -36,7 +51,9 @@ export const list = async (req: Request, res: Response): Promise<void> => {
 
     res.render('client/pages/songs/list', {
         pageTitle: "Danh sách bài hát",
-        songs: songs // Thêm biến songs vào render
+        songs: songs, // Thêm biến songs vào render
+        currentPage: page,
+        totalPages: totalPages
     });
 }
 

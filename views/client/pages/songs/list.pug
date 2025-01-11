@@ -7,7 +7,6 @@ block main
       .col-12
         +box-head(pageTitle)
 
-
     .row
       each song in songs
         .col-4.mb-3
@@ -21,3 +20,30 @@ block main
               div(class="inner-singer") <i class="fa-solid fa-microphone-lines"></i> #{song.infoSinger.fullName}
               div(class="inner-like") <i class="fa-solid fa-thumbs-up"></i> #{song.like}
               div(class="inner-time") <i class="fa-regular fa-clock"></i> Hôm nay
+
+    .row
+      .col-12
+        .pagination-container
+          nav(aria-label="Page navigation")
+            ul.pagination
+              if currentPage > 1
+                li.page-item
+                  a.page-link(href=`?page=${currentPage - 1}`) Previous
+              else
+                li.page-item.disabled
+                  span.page-link Previous
+
+              each page in Array(totalPages).fill().map((_, i) => i + 1)
+                if page === currentPage
+                  li.page-item.active
+                    span.page-link #{page}
+                else
+                  li.page-item
+                    a.page-link(href=`?page=${page}`) #{page}
+
+              if currentPage < totalPages
+                li.page-item
+                  a.page-link(href=`?page=${currentPage + 1}`) Next
+              else
+                li.page-item.disabled
+                  span.page-link Next

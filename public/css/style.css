@@ -781,3 +781,60 @@ body {
     color: #fff;
 }
 /* End Info User */
+
+/* Pagination */
+/* .pagination-container {
+    position: fixed;
+    bottom: 80px;
+    left: 150px;
+    width: 100%;
+    background: #202020;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+} */
+
+/* Pagination */
+.pagination-container {
+    position: fixed;
+    bottom: 80px;
+    width: 100%;
+    background: #202020;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+
+.pagination li {
+    display: inline; /* Đảm bảo các phần tử li nằm ngang */
+    margin: 0 5px;
+}
+
+.pagination li a,
+.pagination li span {
+    color: #fff;
+    background: #333;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.pagination li a:hover,
+.pagination li span:hover {
+    background: #555;
+}
+
+.pagination li.active span {
+    background: #007bff;
+    color: #fff;
+}
+/* End Pagination */
+
+/* End Pagination */
