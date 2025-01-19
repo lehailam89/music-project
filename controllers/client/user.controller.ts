@@ -3,7 +3,7 @@ import User from '../../models/user.model';
 import ForgotPassword from '../../models/forgot-password.model';
 import { generateRandomNumber, generateRandomString } from '../../helpers/generate';
 import { sendMail } from '../../helpers/sendMail';
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 //[GET] /user/register
 export const register = async (req: Request, res: Response) => {
@@ -73,9 +73,14 @@ export const loginPost = async (req: Request, res: Response) => {
 }
 
 //[GET] /logout
-export const logout = async (req: Request, res: Response) => {
-    res.clearCookie("tokenUser");
-    res.redirect("/user/login");
+export const logout = async (req: Request, res: Response, next: NextFunction) => {
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+        res.clearCookie("tokenUser");
+        res.redirect("/user/login");
+    });
 };
 
 //[GET] /user/password/forgot

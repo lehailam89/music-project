@@ -1,4 +1,5 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
+import passport from 'passport';
 const router = Router();
 import * as userController from "../../controllers/client/user.controller";
 import * as validate from "../../validates/client/user.validate";
@@ -16,5 +17,16 @@ router.post("/password/otp", userController.otpPasswordPost);
 router.get("/password/reset", userController.resetPassword);
 router.post("/password/reset", validate.resetPasswordPost ,userController.resetPasswordPost);
 router.get("/info", authMiddleware.requireAuth ,userController.info);
+
+// Google OAuth routes
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/user/login' }), (req: Request, res: Response) => {
+    // Kiểm tra xem req.user có tồn tại và có thuộc tính tokenUser
+    const user = req.user as any; // Ép kiểu req.user thành any để truy cập thuộc tính tokenUser
+    if (user && user.tokenUser) {
+        res.cookie("tokenUser", user.tokenUser);
+    }
+    res.redirect('/topics');
+});
 
 export const userRoutes: Router = router;

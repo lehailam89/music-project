@@ -1,9 +1,13 @@
 import express, { Express } from 'express';
 import dotenv from 'dotenv';
+dotenv.config();
+
+
 import * as database from './config/database';
 import session from 'express-session';
 import flash from 'express-flash';
 import cookieParser from 'cookie-parser';
+import passport from './config/passport';
 
 import adminRoutes from './routes/admin/index.route';
 import clientRoutes from './routes/client/index.route';
@@ -13,7 +17,6 @@ import methodOverride from 'method-override';
 import bodyParser from "body-parser";
 import { infoUser } from './middlewares/client/user.middleware';
 
-dotenv.config();
 
 database.connect();
 
@@ -35,6 +38,10 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use(flash());
+
+//passportjs đăng nhập Google
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Sử dụng middleware infoUser
 app.use(infoUser);

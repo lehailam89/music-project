@@ -12,6 +12,7 @@ const clientRoutes = (app: Express): void => {
     app.use(`/favorite-songs`, favoriteSongRoutes);
     app.use(`/search`, searchRoutes);
     app.use(`/user`, userRoutes);
+    app.use(`/auth`, userRoutes); // Thêm dòng này để định nghĩa route `/auth`
 };
 
 export default clientRoutes;

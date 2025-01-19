@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema(
         fullName: String,
         email: String,
         password: String,
+        googleId: String, // Thêm trường googleId
         tokenUser: {
             type: String,
             default: generateRandomString(30)
