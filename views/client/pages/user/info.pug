@@ -7,4 +7,28 @@ block main
             .col-12
                 +box-head("Thông tin tài khoản")
 
-        div(class="info-user") #{user}
+        .info-user
+            .card
+                .card-header
+                    h3 Thông tin cá nhân
+                .card-body
+                    .row
+                        .col-md-4
+                            img(src=user.avatar, alt="Avatar", class="img-fluid rounded-circle")
+                        .col-md-8
+                            ul.list-group
+                                li.list-group-item
+                                    strong Họ và tên: 
+                                    | #{user.fullName}
+                                li.list-group-item
+                                    strong Email: 
+                                    | #{user.email}
+                                li.list-group-item
+                                    strong Trạng thái: 
+                                    | #{user.status}
+                                li.list-group-item
+                                    strong Ngày tạo: 
+                                    | #{user.createdAt.toDateString()}
+                                li.list-group-item
+                                    strong Ngày cập nhật: 
+                                    | #{user.updatedAt.toDateString()}

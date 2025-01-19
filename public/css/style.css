@@ -837,4 +837,49 @@ body {
 }
 /* End Pagination */
 
-/* End Pagination */
+/* Info User Page */
+.info-user {
+    background: #2c3e50;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #ecf0f1;
+}
+
+.info-user .card {
+    background: #34495e;
+    border: none;
+}
+
+.info-user .card-header {
+    background: #1abc9c;
+    color: #fff;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    padding: 15px;
+}
+
+.info-user .card-body {
+    padding: 20px;
+}
+
+.info-user .img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.info-user .list-group-item {
+    background: #34495e;
+    border: none;
+    color: #ecf0f1;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.info-user .list-group-item strong {
+    color: #1abc9c;
+}
+/* End Info User Page */
