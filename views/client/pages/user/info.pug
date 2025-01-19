@@ -27,8 +27,14 @@ block main
                                     strong Trạng thái: 
                                     | #{user.status}
                                 li.list-group-item
+                                    strong Số điện thoại: 
+                                    | #{user.phone}
+                                li.list-group-item
                                     strong Ngày tạo: 
                                     | #{user.createdAt.toDateString()}
                                 li.list-group-item
                                     strong Ngày cập nhật: 
                                     | #{user.updatedAt.toDateString()}
+                    .row.mt-3
+                        .col-12.text-right
+                            a.btn.btn-primary(href="/user/edit") Chỉnh sửa thông tin

@@ -883,3 +883,53 @@ body {
     color: #1abc9c;
 }
 /* End Info User Page */
+
+/* Edit User Page */
+.edit-user-container {
+    background: #2c3e50;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #ecf0f1;
+}
+
+.edit-user-container h1 {
+    color: #1abc9c;
+    margin-bottom: 20px;
+}
+
+.edit-user-container .form-group label {
+    color: #ecf0f1;
+}
+
+.edit-user-container .form-control {
+    background: #34495e;
+    border: none;
+    color: #ecf0f1;
+}
+
+.edit-user-container .form-control:focus {
+    background: #34495e;
+    border: 1px solid #1abc9c;
+    color: #ecf0f1;
+}
+
+.edit-user-container .form-control-file {
+    background: #34495e;
+    border: none;
+    color: #ecf0f1;
+}
+
+.edit-user-container .btn-primary {
+    background: #1abc9c;
+    border: none;
+}
+
+.edit-user-container .btn-primary:hover {
+    background: #16a085;
+}
+
+.edit-user-container img {
+    border: 2px solid #1abc9c;
+}
+/* End Edit User Page */

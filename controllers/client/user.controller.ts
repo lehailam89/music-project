@@ -198,3 +198,36 @@ export const info = async (req: Request, res: Response) => {
         title: "Thông tin tài khoản"
     });
 }
+
+//[GET] /user/edit
+export const edit = async (req: Request, res: Response) => {
+    const tokenUser = req.cookies.tokenUser;
+    const user = await User.findOne({ tokenUser: tokenUser, deleted: false });
+    if (!user) {
+        req.flash("error", "Người dùng không tồn tại!");
+        return res.redirect("/user/info");
+    }
+    res.render("client/pages/user/edit", {
+        title: "Chỉnh sửa thông tin cá nhân",
+        user: user
+    });
+}
+
+//[POST] /user/edit
+export const editPost = async (req: Request, res: Response) => {
+    const tokenUser = req.cookies.tokenUser;
+    const updateData: any = {
+        fullName: req.body.fullName,
+        email: req.body.email,
+        phone: req.body.phone,
+    };
+
+    if (req.body.avatar) {
+        updateData.avatar = req.body.avatar;
+    }
+
+    await User.findOneAndUpdate({ tokenUser: tokenUser, deleted: false }, updateData);
+
+    req.flash("success", "Cập nhật thông tin thành công!");
+    res.redirect("/user/info");
+};
