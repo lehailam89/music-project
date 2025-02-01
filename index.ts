@@ -28,7 +28,7 @@ app.use(cookieParser()); // Đảm bảo rằng cookie-parser được sử dụ
 app.use(methodOverride("_method"));
 app.use(express.static(`${__dirname}/public`));
 
-app.set("views", `${__dirname}./views`);
+app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 
 // Sử dụng session và flash
