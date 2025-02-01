@@ -1,0 +1,62 @@
+header.header
+  .container
+    .row.align-items-center
+      .col-3
+        .inner-logo
+          a(href="/")
+            img(src="/images/spotify.logo.svg", alt="Logo")
+      .col-5
+        .box-search
+          form(
+            action="/search/result"
+            method="GET"
+          )
+            div(class="form-group d-flex mb-0")
+              button(
+                  type="submit"
+                  class="btn btn-primary"
+                ) <i class="fa-solid fa-magnifying-glass"></i>
+              input(
+                type="text"
+                placeholder="What do you want to play?"
+                class="form-control"
+                name="keyword"
+                value=keyword
+              )
+          .inner-suggest
+              .inner-list
+                //- a(href=`/songs/detail/:slugSong` class="inner-item")
+                //-   .inner-image
+                //-     img(src="https://backend.daca.vn/assets/images/cat-doi-noi-sau.jpg")
+                //-   .inner-info
+                //-     .inner-title Cắt đôi nỗi sầu
+                //-     .inner-singer
+                //-       <i class="fa-solid fa-microphone-lines"></i> Tăng Duy Tân
+                //- a(href=`/songs/detail/:slugSong` class="inner-item")
+                //-   .inner-image
+                //-     img(src="https://backend.daca.vn/assets/images/ngay-mai-nguoi-ta-lay-chong.jpg")
+                //-   .inner-info
+                //-     .inner-title Ngày Mai Người Ta Lấy Chồng
+                //-     .inner-singer
+                //-       <i class="fa-solid fa-microphone-lines"></i> Thành Đạt
+        
+      .col-4
+        .inner-menu
+          ul
+            li
+              a(href="/") <i class="fa-solid fa-house"></i>Trang chủ
+            li
+              a(href="/topics") <i class="fa-solid fa-music"></i> Chủ đề
+            li 
+              a(href="/favorite-songs") <i class="fa-solid fa-heart"></i> Bài hát yêu thích
+
+            if(user)
+              li 
+                a(href="/user/info") #{user.fullName}
+              li 
+                a(href="/user/logout") Đăng xuất
+            else
+              li 
+                a(href="/user/register") Đăng kí
+              li
+                a(href="/user/login") Đăng nhập

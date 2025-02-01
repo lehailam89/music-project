@@ -4,7 +4,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec ts-node index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist"
   },
   "author": "",
   "license": "ISC",

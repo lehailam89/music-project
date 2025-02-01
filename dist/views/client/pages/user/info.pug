@@ -1,0 +1,40 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main
+    .container.my-3 
+        .row
+            .col-12
+                +box-head("Thông tin tài khoản")
+
+        .info-user
+            .card
+                .card-header
+                    h3 Thông tin cá nhân
+                .card-body
+                    .row
+                        .col-md-4
+                            img(src=user.avatar, alt="Avatar", class="img-fluid rounded-circle")
+                        .col-md-8
+                            ul.list-group
+                                li.list-group-item
+                                    strong Họ và tên: 
+                                    | #{user.fullName}
+                                li.list-group-item
+                                    strong Email: 
+                                    | #{user.email}
+                                li.list-group-item
+                                    strong Trạng thái: 
+                                    | #{user.status}
+                                li.list-group-item
+                                    strong Số điện thoại: 
+                                    | #{user.phone}
+                                li.list-group-item
+                                    strong Ngày tạo: 
+                                    | #{user.createdAt.toDateString()}
+                                li.list-group-item
+                                    strong Ngày cập nhật: 
+                                    | #{user.updatedAt.toDateString()}
+                    .row.mt-3
+                        .col-12.text-right
+                            a.btn.btn-primary(href="/user/edit") Chỉnh sửa thông tin
