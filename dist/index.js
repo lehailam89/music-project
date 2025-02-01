@@ -58,7 +58,7 @@ app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
 app.use((0, method_override_1.default)("_method"));
 app.use(express_1.default.static(`${__dirname}/public`));
-app.set("views", `${__dirname}./views`);
+app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 app.use((0, express_session_1.default)({
     secret: 'your_secret_key',
