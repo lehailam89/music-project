@@ -3,14 +3,17 @@ const slug = require("mongoose-slug-updater");
 
 mongoose.plugin(slug);
 
-const singerSchema = new mongoose.Schema(
+const songSchema = new mongoose.Schema(
     {
         title: String,
         avatar: String,
         description: String,
         singerId: String,
         topicId: String,
-        like: Number,
+        like: {
+            type: Number,
+            default: 0 // Đặt giá trị mặc định cho trường like là 0
+        },
         listen: {
             type: Number,
             default: 0
@@ -38,6 +41,6 @@ const singerSchema = new mongoose.Schema(
     }
 );
 
-const Song = mongoose.model('Song', singerSchema, "songs");
+const Song = mongoose.model('Song', songSchema, "songs");
 
 export default Song;
