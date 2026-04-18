@@ -1,0 +1,76 @@
+extends ../../layouts/default.pug
+
+block main
+    .home-page
+        .container
+            .home-hero
+                .row.align-items-center
+                    .col-12.col-lg-7
+                        .home-pill
+                            i.fa-solid.fa-headphones
+                            span Chill picks for you
+                        h1.home-title Nghe nhac moi ngay, theo cach cua ban
+                        p.home-subtitle Thu vien am nhac danh cho nguoi yeu giai dieu. Kham pha bai hat moi, chu de hot va nghe lien tuc khong ngung.
+                        .home-actions
+                            a.btn.btn-primary.home-btn(href="/topics") Kham pha chu de
+                            a.btn.btn-outline-light.home-btn(href="/songs") Nghe bai hat
+                        .home-stats
+                            .home-stat
+                                strong 50K+
+                                span Bai hat
+                            .home-stat
+                                strong 120+
+                                span Chu de
+                            .home-stat
+                                strong 24/7
+                                span Phat lien tuc
+                    .col-12.col-lg-5
+                        .home-hero-art
+                            .home-hero-card
+                                .home-hero-cover
+                                    img(src="/images/spotify.logo.svg", alt="Cover")
+                                .home-hero-info
+                                    h3 Spoty Mix
+                                    p Tuy chon theo tam trang
+                                .home-hero-controls
+                                    button.btn.btn-light.btn-sm
+                                        i.fa-solid.fa-play
+                                    span 3:24
+
+            .home-section
+                .home-section-head
+                    h2 Chu de noi bat
+                    a(href="/topics") Xem tat ca
+                if topics && topics.length > 0
+                    .home-grid
+                        each topic in topics
+                            a.home-card(href=`/songs/${topic.slug}`)
+                                .home-card-media
+                                    img(src=topic.avatar, alt=topic.title)
+                                .home-card-body
+                                    h3= topic.title
+                                    if topic.description
+                                        p= topic.description
+                else
+                    p.home-empty Chua co chu de nao.
+
+            .home-section
+                .home-section-head
+                    h2 Bai hat moi
+                    a(href="/songs") Xem tat ca
+                if songs && songs.length > 0
+                    .home-grid.home-grid--songs
+                        each song in songs
+                            a.home-card.home-card--song(href=`/songs/detail/${song.slug}`)
+                                .home-card-media
+                                    img(src=song.avatar, alt=song.title)
+                                    .home-card-play
+                                        i.fa-solid.fa-play
+                                .home-card-body
+                                    h3= song.title
+                                    if song.singer && song.singer.fullName
+                                        p
+                                            i.fa-solid.fa-microphone-lines
+                                            |  #{song.singer.fullName}
+                else
+                    p.home-empty Chua co bai hat nao.
